@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latest News | Aurora Channel</title>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+            --accent-color: #fbbc04;
+        }
+        
+        body {
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .card-text {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 15px;
+        }
+        
+        .card-link {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .card-link:hover {
+            color: #0d5bba;
+            text-decoration: underline;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc1c6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #3c4043;
+            color: #9aa0a6;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Aurora</a>
+            <nav class="nav-links">
+                <a href="Home_Page.html">Home</a>
+                <a href="latestnews.html">Latest News</a>
+                <a href="artistic.html">Artists</a>
+                <a href="schedule.html">Schedule</a>
+                <a href="Highlight.html">Highlights</a>
+                <a href="userprofileuid.html">Profile</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <h1>Discover the Latest in Arts & Entertainment</h1>
+        <p>Explore upcoming events, artist interviews, and exclusive content from the Aurora Channel</p>
+    </section>
+    
+    <div class="container">
+        <h2 class="section-title">Breaking News</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2023/11/gru-quotes-feature.jpg" alt="Gru and Minions" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Exclusive</span>
+                    <h3 class="card-title">Gru and Minions Go Candid</h3>
+                    <p class="card-text">World's favorite villain and his yellow companions reveal their plans to steal Saturn in this explosive interview.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/interview.html#int1" class="card-link">Read Interview →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://assets.mubicdn.net/images/film/117479/image-w1280.jpg?1445954566" alt="Action Kamen" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Tribute</span>
+                    <h3 class="card-title">Farewell to a Childhood Hero</h3>
+                    <p class="card-text">Fans worldwide mourn the loss of Action Kamen, the superhero who defined a generation.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/articles.html#article13" class="card-link">Read Article →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1495041233/vector/hand-drawn-style-30-percent-off-discount-sale-promotion-label-illustration-vector.jpg?s=612x612&w=0&k=20&c=ETfRJbVFueWSFwjEw68Hi3aQqYvxI8KAxfFsx4Lla5U=" alt="30% Discount" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Limited Time</span>
+                    <h3 class="card-title">30% Off Merchandise Sale</h3>
+                    <p class="card-text">New Aurora merchandise now available at discounted prices. Offer ends Friday!</p>
+                    <a href="#" class="card-link">Shop Now →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://img.freepik.com/premium-photo/chef-cooking-with-fire-delicious-food-preparation_1282444-194090.jpg" alt="Culinary Finale" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Event</span>
+                    <h3 class="card-title">Culinary Prodigies Face Off</h3>
+                    <p class="card-text">The most anticipated cooking competition finale is here. Who will take home the trophy?</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/articles.html#article1" class="card-link">View Results →</a>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="grid-container">
+            <div class="card">
+                <img src="https://mir-s3-cdn-cf.behance.net/projects/404/fe814f198191511.Y3JvcCwxMjcxLDk5NCwxNDEwLDM2Mg.png" alt="Spike Speigal" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Rescheduled</span>
+                    <h3 class="card-title">Bounty's Royale Clash</h3>
+                    <p class="card-text">Now airing Sunday due to heat wave. Spike Speigal to make announcement Tuesday.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/post.html#post11" class="card-link">Details →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://wallpapercave.com/dwp2x/wp6071141.jpg" alt="Woo Yeonwoo" class="card-image">
+                <div class="card-content">
+                    <span class="badge">On Sale Soon</span>
+                    <h3 class="card-title">Woo Yeonwoo World Tour</h3>
+                    <p class="card-text">Tickets for the global phenomenon's tour go on sale next week.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/post.html#post1" class="card-link">Get Notified →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://m.media-amazon.com/images/I/91-b-PkOJ+S._UF1000,1000_QL80_.jpg" alt="Mukuodo Tsuyashi" class="card-image">
+                <div class="card-content">
+                    <span class="badge">New Season</span>
+                    <h3 class="card-title">Campfire Cooking Returns</h3>
+                    <p class="card-text">Mukuoda Tsuyoshi's hit series begins new season this Friday.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/articles.html#article5" class="card-link">Learn More →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://theindependentdirector.co.uk/wp-content/uploads/2017/12/578507_47b9fc6d68324a0caf3a1fc210187155_mv2-1024x400.jpg" alt="Hammer & Nails" class="card-image">
+                <div class="card-content">
+                    <span class="badge">Exclusive</span>
+                    <h3 class="card-title">Fired Employees Speak Out</h3>
+                    <p class="card-text">Three former Hammer & Nails Inc. employees share their ordeal in this revealing interview.</p>
+                    <a href="https://sravyas-ai.github.io/Recreational_Website/interview.html#int2" class="card-link">Read Story →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <a href="#" class="footer-logo">Aurora</a>
+                <p>Discover the world of arts, entertainment, and culture through our curated experiences.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="Home_Page.html">Home</a></li>
+                    <li><a href="latestnews.html">Latest News</a></li>
+                    <li><a href="artistic.html">Artists</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Highlights</h3>
+                <ul>
+                    <li><a href="Highlight.html">Featured</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="interview.html">Interviews</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="userprofileuid.html">Profile</a></li>
+                    <li><a href="bookedlist.html">Bookings</a></li>
+                    <li><a href="wishlist.html">Wishlist</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Aurora Channel. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
